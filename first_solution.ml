@@ -5,4 +5,4 @@ let rec last (xs: 'a list): 'a option =
   | _ :: rest -> last rest
 
 let () =
-  Printf.printf "Hello World";
+  print_endline "last()";
