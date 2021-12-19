@@ -1,10 +1,9 @@
-(* This solution not completed. 
-   It's not working with empty string as first argument *)
-let compress (xs : 'a list) : 'a list = 
-  let rec aux x acc h = 
-    match x with
-    | [] -> acc
-    | head :: tail -> if h = head
-                      then aux tail acc h 
-                      else head :: aux tail acc head
-  in aux xs [] ""
+let pack (xs : 'a list) = 
+  let rec aux l tmp ans =  
+    match l with
+    | [] -> []
+    | a :: (b :: _ as tl) -> if a = b 
+                            then aux tl (a :: tmp) ans
+                            else aux tl [] ((a :: tmp) :: ans) 
+    | head :: _ -> List.rev ((head::tmp)::ans)
+  in aux xs [] [] 
