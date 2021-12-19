@@ -1,9 +1,5 @@
-let pack (xs : 'a list) = 
-  let rec aux l tmp ans =  
-    match l with
-    | [] -> []
-    | a :: (b :: _ as tl) -> if a = b 
-                            then aux tl (a :: tmp) ans
-                            else aux tl [] ((a :: tmp) :: ans) 
-    | head :: _ -> List.rev ((head::tmp)::ans)
-  in aux xs [] [] 
+let rec compress (xs: 'a list): 'a list =
+  match xs with 
+  | a :: (b :: _ as t) -> if a = b then compress t else a :: compress t 
+  | result -> result;;
+
